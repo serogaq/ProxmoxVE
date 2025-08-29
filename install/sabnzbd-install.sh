@@ -25,7 +25,7 @@ msg_ok "Setup uv"
 
 msg_info "Setup Unrar"
 cat <<EOF >/etc/apt/sources.list.d/non-free.list
-deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+deb https://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
 EOF
 $STD apt-get update
 $STD apt-get install -y unrar

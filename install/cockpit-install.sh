@@ -16,7 +16,7 @@ update_os
 
 msg_info "Installing Cockpit"
 source /etc/os-release
-echo "deb http://deb.debian.org/debian ${VERSION_CODENAME}-backports main" >/etc/apt/sources.list.d/backports.list
+echo "deb https://deb.debian.org/debian ${VERSION_CODENAME}-backports main" >/etc/apt/sources.list.d/backports.list
 $STD apt-get update
 $STD apt-get install -t ${VERSION_CODENAME}-backports cockpit --no-install-recommends -y
 sed -i "s/root//g" /etc/cockpit/disallowed-users

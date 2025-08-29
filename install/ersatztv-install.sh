@@ -29,14 +29,14 @@ if [[ ${prompt,,} =~ ^(y|yes)$ ]]; then
   msg_info "Installing Intel Hardware Acceleration (non-free)"
   cat <<EOF >/etc/apt/sources.list.d/non-free.list
 
-deb http://deb.debian.org/debian bookworm non-free non-free-firmware
-deb-src http://deb.debian.org/debian bookworm non-free non-free-firmware
+deb https://deb.debian.org/debian bookworm non-free non-free-firmware
+deb-src https://deb.debian.org/debian bookworm non-free non-free-firmware
 
-deb http://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
-deb-src http://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
+deb https://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
+deb-src https://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
 
-deb http://deb.debian.org/debian bookworm-updates non-free non-free-firmware
-deb-src http://deb.debian.org/debian bookworm-updates non-free non-free-firmware
+deb https://deb.debian.org/debian bookworm-updates non-free non-free-firmware
+deb-src https://deb.debian.org/debian bookworm-updates non-free non-free-firmware
 EOF
   $STD apt-get update
   $STD apt-get -y install {intel-media-va-driver-non-free,ocl-icd-libopencl1,intel-opencl-icd,vainfo,intel-gpu-tools}

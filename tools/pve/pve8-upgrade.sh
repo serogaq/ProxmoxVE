@@ -52,7 +52,7 @@ start_routines() {
   cat <<EOF >/etc/apt/sources.list
 deb http://ftp.debian.org/debian bookworm main contrib
 deb http://ftp.debian.org/debian bookworm-updates main contrib
-deb http://security.debian.org/debian-security bookworm-security main contrib
+deb https://security.debian.org/debian-security bookworm-security main contrib
 EOF
   msg_ok "Changed to Proxmox VE 8 Sources"
 
