@@ -2,7 +2,7 @@
 source <(curl -fsSL https://raw.githubusercontent.com/serogaq/ProxmoxVE/main/misc/build.func)
 # Copyright (c) 2021-2025 community-scripts ORG
 # Author: vhsdream
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/serogaq/ProxmoxVE/raw/main/LICENSE
 # Source: https://immich.app
 
 APP="immich"
