@@ -16,7 +16,7 @@ update_os
 setup_uv
 
 msg_info "Configuring apt and installing dependencies"
-echo "deb http://deb.debian.org/debian testing main contrib" >/etc/apt/sources.list.d/immich.list
+echo "deb https://deb.debian.org/debian testing main contrib" >/etc/apt/sources.list.d/immich.list
 cat <<EOF >/etc/apt/preferences.d/immich
 Package: *
 Pin: release a=testing
