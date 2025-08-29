@@ -15,6 +15,28 @@ update_os
 
 setup_uv
 
+force_https_apt_sources() {
+  set -euo pipefail
+  local ts; ts="$(date +%Y%m%d%H%M%S)"
+
+  # Соберём все подходящие файлы источников APT (deb-style и deb822)
+  mapfile -t _apt_files < <(
+    find /etc/apt -maxdepth 2 -type f \
+      \( -name 'sources.list' -o -name '*.list' -o -name '*.sources' \) \
+      | sort -u
+  )
+
+  for f in "${_apt_files[@]}"; do
+    # Есть ли вообще http:// в файле?
+    if grep -qE '(^|[[:space:]])http://' "$f"; then
+      cp -a "$f" "${f}.bak.${ts}"
+      # Меняем только чистый http://, не трогаем строки вида tor+http:// и т.п.
+      sed -E -i 's#(^|[[:space:]])http://#\1https://#g' "$f"
+      echo "Converted http->https in: $f (backup: ${f}.bak.${ts})"
+    fi
+  done
+}
+
 msg_info "Configuring apt and installing dependencies"
 echo "deb https://deb.debian.org/debian testing main contrib" >/etc/apt/sources.list.d/immich.list
 cat <<EOF >/etc/apt/preferences.d/immich
@@ -22,6 +44,8 @@ Package: *
 Pin: release a=testing
 Pin-Priority: -10
 EOF
+
+force_https_apt_sources
 
 $STD apt-get update
 $STD apt-get install --no-install-recommends -y \
