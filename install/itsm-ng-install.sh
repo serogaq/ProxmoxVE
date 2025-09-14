@@ -33,8 +33,8 @@ mariadb -u root -e "GRANT SELECT ON \`mysql\`.\`time_zone_name\` TO '$DB_USER'@'
 msg_ok "Set up database"
 
 msg_info "Setup ITSM-NG Repository"
-curl -fsSL http://deb.itsm-ng.org/pubkey.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/itsm-ng-keyring.gpg
-echo "deb http://deb.itsm-ng.org/$(. /etc/os-release && echo "$ID")/ $(. /etc/os-release && echo "$VERSION_CODENAME") main" >/etc/apt/sources.list.d/itsm-ng.list
+curl -fsSL https://deb.itsm-ng.org/pubkey.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/itsm-ng-keyring.gpg
+echo "deb https://deb.itsm-ng.org/$(. /etc/os-release && echo "$ID")/ $(. /etc/os-release && echo "$VERSION_CODENAME") main" >/etc/apt/sources.list.d/itsm-ng.list
 $STD apt-get update
 msg_ok "Setup ITSM-NG Repository"
 

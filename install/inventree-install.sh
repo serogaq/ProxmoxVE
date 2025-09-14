@@ -15,7 +15,7 @@ update_os
 
 msg_info "Installing Dependencies"
 temp_file=$(mktemp)
-curl -fsSL "http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb" -o "$temp_file"
+curl -fsSL "https://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb" -o "$temp_file"
 $STD dpkg -i $temp_file
 msg_ok "Installed Dependencies"
 

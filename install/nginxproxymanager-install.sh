@@ -40,7 +40,7 @@ VERSION="$(awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release)"
 
 msg_info "Installing Openresty"
 curl -fsSL "https://openresty.org/package/pubkey.gpg" | gpg --dearmor -o /etc/apt/trusted.gpg.d/openresty-archive-keyring.gpg
-echo -e "deb http://openresty.org/package/debian bullseye openresty" >/etc/apt/sources.list.d/openresty.list
+echo -e "deb https://openresty.org/package/debian bullseye openresty" >/etc/apt/sources.list.d/openresty.list
 $STD apt-get update
 $STD apt-get -y install openresty
 msg_ok "Installed Openresty"

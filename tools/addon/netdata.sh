@@ -131,7 +131,7 @@ install() {
   $STD apt-get install -y netdata
   msg_ok "Installed Netdata"
   msg_ok "Completed Successfully!\n"
-  echo -e "\n Netdata should be reachable at${BL} http://$(hostname -I | awk '{print $1}'):19999 ${CL}\n"
+  echo -e "\n Netdata should be reachable at${BL} https://$(hostname -I | awk '{print $1}'):19999 ${CL}\n"
 }
 
 uninstall() {

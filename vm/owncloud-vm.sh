@@ -477,7 +477,7 @@ fi
 msg_ok "Using ${CL}${BL}$STORAGE${CL} ${GN}for Storage Location."
 msg_ok "Virtual Machine ID is ${CL}${BL}$VMID${CL}."
 msg_info "Retrieving the URL for the $APP Disk Image"
-URL=http://mirror.turnkeylinux.org/turnkeylinux/images/iso/turnkey-owncloud-18.0-bookworm-amd64.iso
+URL=https://mirror.turnkeylinux.org/turnkeylinux/images/iso/turnkey-owncloud-18.0-bookworm-amd64.iso
 sleep 2
 msg_ok "${CL}${BL}${URL}${CL}"
 curl -f#SL -o "$(basename "$URL")" "$URL"

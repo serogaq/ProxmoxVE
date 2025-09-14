@@ -22,7 +22,7 @@ if [ "$os" == "ubuntu" ]; then
 else
   DISTRO="${os^}"
 fi
-echo "deb http://download.opensuse.org/repositories/home:/Masgalor:/LLDAP/${DISTRO}_${VERSION_ID}/ /" >/etc/apt/sources.list.d/home:Masgalor:LLDAP.list
+echo "deb https://download.opensuse.org/repositories/home:/Masgalor:/LLDAP/${DISTRO}_${VERSION_ID}/ /" >/etc/apt/sources.list.d/home:Masgalor:LLDAP.list
 curl -fsSL https://download.opensuse.org/repositories/home:Masgalor:LLDAP/${DISTRO}_${VERSION_ID}/Release.key | gpg --dearmor >/etc/apt/trusted.gpg.d/home_Masgalor_LLDAP.gpg
 $STD apt update
 $STD apt install -y lldap

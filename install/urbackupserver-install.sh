@@ -20,7 +20,7 @@ msg_ok "Installed Dependencies"
 
 msg_info "Installing UrBackup Server"
 curl -fsSL https://download.opensuse.org/repositories/home:uroni/Debian_12/Release.key | gpg --dearmor >/etc/apt/trusted.gpg.d/home_uroni.gpg
-echo 'deb [signed-by=/etc/apt/trusted.gpg.d/home_uroni.gpg] http://download.opensuse.org/repositories/home:/uroni/Debian_12/ /' >/etc/apt/sources.list.d/home:uroni.list
+echo 'deb [signed-by=/etc/apt/trusted.gpg.d/home_uroni.gpg] https://download.opensuse.org/repositories/home:/uroni/Debian_12/ /' >/etc/apt/sources.list.d/home:uroni.list
 $STD apt-get update -y
 apt-get install -y -qq urbackup-server
 msg_ok "Installed UrBackup Server"

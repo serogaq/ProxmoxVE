@@ -19,7 +19,7 @@ curl -fsSL "https://www.mongodb.org/static/pgp/server-4.4.asc" | gpg --dearmor >
 OS_ID=$(grep '^ID=' /etc/os-release | cut -d'=' -f2)
 
 if [ "$OS_ID" = "debian" ]; then
-  echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] http://repo.mongodb.org/apt/debian $(grep '^VERSION_CODENAME=' /etc/os-release | cut -d'=' -f2)/mongodb-org/4.4 main" >/etc/apt/sources.list.d/mongodb-org-4.4.list
+  echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/debian $(grep '^VERSION_CODENAME=' /etc/os-release | cut -d'=' -f2)/mongodb-org/4.4 main" >/etc/apt/sources.list.d/mongodb-org-4.4.list
 else
   echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/ubuntu $(grep '^VERSION_CODENAME=' /etc/os-release | cut -d'=' -f2)/mongodb-org/4.4 multiverse" >/etc/apt/sources.list.d/mongodb-org-4.4.list
 fi

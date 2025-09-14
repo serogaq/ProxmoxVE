@@ -15,7 +15,7 @@ update_os
 
 msg_info "Setting up Resilio Sync Repository"
 curl -fsSL "https://linux-packages.resilio.com/resilio-sync/key.asc" >/etc/apt/trusted.gpg.d/resilio-sync.asc
-echo "deb [signed-by=/etc/apt/trusted.gpg.d/resilio-sync.asc] http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" >/etc/apt/sources.list.d/resilio-sync.list
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/resilio-sync.asc] https://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" >/etc/apt/sources.list.d/resilio-sync.list
 $STD apt-get update
 msg_ok "Resilio Sync Repository Setup"
 
