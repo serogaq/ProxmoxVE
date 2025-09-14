@@ -61,7 +61,7 @@ function update_script() {
     done
     msg_ok "Image-processing libraries up to date"
   fi
-  RELEASE="1.139.4"
+  RELEASE="1.142.0"
   if check_for_gh_release "immich" "immich-app/immich" "${RELEASE}"; then
     msg_info "Stopping Services"
     systemctl stop immich-web
@@ -160,15 +160,14 @@ EOF
     cd "$SRC_DIR"/machine-learning
     mkdir -p "$ML_DIR"
     export VIRTUAL_ENV="${ML_DIR}"/ml-venv
-    $STD /usr/local/bin/uv venv "$VIRTUAL_ENV"
     if [[ -f ~/.openvino ]]; then
       msg_info "Updating HW-accelerated machine-learning"
-      /usr/local/bin/uv -q sync --extra openvino --no-cache --active
+      $STD /usr/local/bin/uv sync --extra openvino --no-cache --active
       patchelf --clear-execstack "${VIRTUAL_ENV}/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.cpython-311-x86_64-linux-gnu.so"
       msg_ok "Updated HW-accelerated machine-learning"
     else
       msg_info "Updating machine-learning"
-      /usr/local/bin/uv -q sync --extra cpu --no-cache --active
+      $STD /usr/local/bin/uv sync --extra cpu --no-cache --active
       msg_ok "Updated machine-learning"
     fi
     cd "$SRC_DIR"
@@ -206,8 +205,9 @@ function compile_libjxl() {
   SOURCE=${SOURCE_DIR}/libjxl
   JPEGLI_LIBJPEG_LIBRARY_SOVERSION="62"
   JPEGLI_LIBJPEG_LIBRARY_VERSION="62.3.0"
-  : "${LIBJXL_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/libjxl.json)}"
-  if [[ "${update:-}" ]] || [[ "$LIBJXL_REVISION" != "$(grep 'libjxl' ~/.immich_library_revisions | awk '{print $2}')" ]]; then
+  # : "${LIBJXL_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/libjxl.json)}"
+  : "${LIBJXL_REVISION:=794a5dcf0d54f9f0b20d288a12e87afb91d20dfc}"
+  if [[ "$LIBJXL_REVISION" != "$(grep 'libjxl' ~/.immich_library_revisions | awk '{print $2}')" ]]; then
     msg_info "Recompiling libjxl"
     if [[ -d "$SOURCE" ]]; then rm -rf "$SOURCE"; fi
     $STD git clone https://github.com/libjxl/libjxl.git "$SOURCE"
@@ -253,7 +253,8 @@ function compile_libheif() {
     $STD apt-get install -y libaom-dev
     local update="required"
   fi
-  : "${LIBHEIF_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/libheif.json)}"
+  # : "${LIBHEIF_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/libheif.json)}"
+  : "${LIBHEIF_REVISION:=35dad50a9145332a7bfdf1ff6aef6801fb613d68}"
   if [[ "${update:-}" ]] || [[ "$LIBHEIF_REVISION" != "$(grep 'libheif' ~/.immich_library_revisions | awk '{print $2}')" ]]; then
     msg_info "Recompiling libheif"
     if [[ -d "$SOURCE" ]]; then rm -rf "$SOURCE"; fi
@@ -285,8 +286,9 @@ function compile_libheif() {
 function compile_libraw() {
   SOURCE=${SOURCE_DIR}/libraw
   local update
-  : "${LIBRAW_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/libraw.json)}"
-  if [[ "${update:-}" ]] || [[ "$LIBRAW_REVISION" != "$(grep 'libraw' ~/.immich_library_revisions | awk '{print $2}')" ]]; then
+  # : "${LIBRAW_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/libraw.json)}"
+  : "${LIBRAW_REVISION:=09bea31181b43e97959ee5452d91e5bc66365f1f}"
+  if [[ "$LIBRAW_REVISION" != "$(grep 'libraw' ~/.immich_library_revisions | awk '{print $2}')" ]]; then
     msg_info "Recompiling libraw"
     if [[ -d "$SOURCE" ]]; then rm -rf "$SOURCE"; fi
     $STD git clone https://github.com/libraw/libraw.git "$SOURCE"
@@ -306,8 +308,9 @@ function compile_libraw() {
 
 function compile_imagemagick() {
   SOURCE=$SOURCE_DIR/imagemagick
-  : "${IMAGEMAGICK_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/imagemagick.json)}"
-  if [[ "${update:-}" ]] || [[ "$IMAGEMAGICK_REVISION" != "$(grep 'imagemagick' ~/.immich_library_revisions | awk '{print $2}')" ]]; then
+  # : "${IMAGEMAGICK_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/imagemagick.json)}"
+  : "${IMAGEMAGICK_REVISION:=8289a3388a085ad5ae81aa6812f21554bdfd54f2}"
+  if [[ "$IMAGEMAGICK_REVISION" != "$(grep 'imagemagick' ~/.immich_library_revisions | awk '{print $2}')" ]]; then
     msg_info "Recompiling ImageMagick"
     if [[ -d "$SOURCE" ]]; then rm -rf "$SOURCE"; fi
     $STD git clone https://github.com/ImageMagick/ImageMagick.git "$SOURCE"
@@ -326,8 +329,9 @@ function compile_imagemagick() {
 
 function compile_libvips() {
   SOURCE=$SOURCE_DIR/libvips
-  : "${LIBVIPS_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/libvips.json)}"
-  if [[ "${update:-}" ]] || [[ "$LIBVIPS_REVISION" != "$(grep 'libvips' ~/.immich_library_revisions | awk '{print $2}')" ]]; then
+  # : "${LIBVIPS_REVISION:=$(jq -cr '.revision' "$BASE_DIR"/server/sources/libvips.json)}"
+  : "${LIBVIPS_REVISION:=8fa37a64547e392d3808eed8d72adab7e02b3d00}"
+  if [[ "$LIBVIPS_REVISION" != "$(grep 'libvips' ~/.immich_library_revisions | awk '{print $2}')" ]]; then
     msg_info "Recompiling libvips"
     if [[ -d "$SOURCE" ]]; then rm -rf "$SOURCE"; fi
     $STD git clone https://github.com/libvips/libvips.git "$SOURCE"
